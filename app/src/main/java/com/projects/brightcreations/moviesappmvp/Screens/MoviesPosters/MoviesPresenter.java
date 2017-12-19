@@ -64,50 +64,6 @@ public class MoviesPresenter {
                 .build();
     }
 
-//    void PerformMoviesCall(final String SortType, final int page,
-//                                  final MoviesActivityViews moviesActivityViews){
-//        //progressDialog = ProgressDialog.show(getActivity(),"", "Loading. Please wait...", true);
-//        moviesActivityViews.isLoading(true);
-//        RetrofitBuilder builder = new RetrofitBuilder();
-//        ServiceInterfaces.Movies movies = builder.BuildMovies();
-//        Call<MoviesResponse> apiModelCall = movies.getMovies(SortType, Constants.API_KEY,page);
-//        apiModelCall.enqueue(new Callback<MoviesResponse>() {
-//            @Override
-//            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-//                moviesActivityViews.isLoading(false);
-//                if (SortType.equals(Constants.POPULAR)){
-//                    sharedPreferenceHelper.putPref(SharedPreferenceHelper.POPULAR_CURRENT_PAGE,page);
-//                }else sharedPreferenceHelper.putPref(SharedPreferenceHelper.TOP_CURRENT_PAGE,page);
-//                if (response.body()!=null) {
-//                    resultList = response.body().getResults();
-//                    for (int i=0 ; i<resultList.size(); i++){
-//                        RealmMovie realmMovie = new RealmMovie(resultList.get(i).getId(),
-//                                resultList.get(i).getVoteAverage(),
-//                                resultList.get(i).getTitle(),
-//                                resultList.get(i).getPosterPath(),
-//                                resultList.get(i).getBackdropPath(),
-//                                resultList.get(i).getTitle(),
-//                                resultList.get(i).getOverview(),
-//                                resultList.get(i).getReleaseDate(),
-//                                SortType);
-//                        realmMovieList.add(realmMovie);
-//                    }
-//                    addMoviesToRealm(realmMovieList);
-//                    Log.e("Size:  ",realmMovieList.size()+"");
-//                }else {
-//                    moviesActivityViews.isLoading(false);
-//                    moviesListener.onGetMoviesFailure("Error");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MoviesResponse> call, Throwable t) {
-//                moviesActivityViews.isLoading(false);
-//                moviesListener.onGetMoviesFailure(t.getMessage());
-//            }
-//        });
-//    }
-
     void PerformMoviesCall(final String SortType, final int page,
                            final MoviesActivityViews moviesActivityViews){
         //progressDialog = ProgressDialog.show(getActivity(),"", "Loading. Please wait...", true);
@@ -186,23 +142,6 @@ public class MoviesPresenter {
                         moviesListener.onGetMoviesFromDBSuccess();
                     }
                 });
-//        try {
-//            movieObjectList.clear();
-//            ArrayList<ArrayList<Object>> row;
-//            row = moviesDB.getAllMovies();
-//            for(int i=0 ; i<row.size() ; i++) {
-//                movieObjectList.add(i,new MovieObject((String) row.get(i).get(0),
-//                        (String) row.get(i).get(1),
-//                        (String) row.get(i).get(2),
-//                        (String) row.get(i).get(3),
-//                        (String) row.get(i).get(5),
-//                        (String) row.get(i).get(6),
-//                        (String) row.get(i).get(4)));
-//            }
-//        } catch (Exception e) {
-//            Log.e("Retrieve Error", e.toString());
-//            e.printStackTrace();
-//        }
     }
 
     void dispose(){
