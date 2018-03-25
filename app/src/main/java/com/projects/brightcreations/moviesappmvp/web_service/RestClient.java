@@ -1,4 +1,4 @@
-package com.projects.brightcreations.moviesappmvp.webService;
+package com.projects.brightcreations.moviesappmvp.web_service;
 
 
 import com.projects.brightcreations.moviesappmvp.utils.Constants;

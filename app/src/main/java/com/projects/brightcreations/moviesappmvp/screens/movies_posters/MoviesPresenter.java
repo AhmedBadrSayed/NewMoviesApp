@@ -10,8 +10,8 @@ import com.projects.brightcreations.moviesappmvp.models.Result;
 import com.projects.brightcreations.moviesappmvp.local_db.MoviesDB;
 import com.projects.brightcreations.moviesappmvp.utils.Constants;
 import com.projects.brightcreations.moviesappmvp.utils.SharedPreferenceHelper;
-import com.projects.brightcreations.moviesappmvp.webService.ApiInterfaces;
-import com.projects.brightcreations.moviesappmvp.webService.RestClient;
+import com.projects.brightcreations.moviesappmvp.web_service.ApiInterfaces;
+import com.projects.brightcreations.moviesappmvp.web_service.RestClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,20 +33,20 @@ public class MoviesPresenter {
 
     private onGetMoviesListener moviesListener;
     private Realm realm;
-    private List<MovieRealmObject> movieRealmObjectList;
-    private List<Result> resultList;
     private MoviesDB moviesDB;
     private RestClient restClient;
     private Disposable disposable;
+    private List<MovieRealmObject> movieRealmObjectList;
+    private List<Result> resultList;
 
     MoviesPresenter(Context context, onGetMoviesListener moviesListener) {
         SharedPreferenceHelper.init(context);
         this.moviesListener = moviesListener;
         realm = Realm.getDefaultInstance();
-        moviesDB = new MoviesDB(context);
-        movieRealmObjectList = new ArrayList<>();
         resultList = new ArrayList<>();
         restClient = new RestClient();
+        moviesDB = new MoviesDB(context);
+        movieRealmObjectList = new ArrayList<>();
     }
 
     void PerformMoviesCall(final String SortType, final int page,
