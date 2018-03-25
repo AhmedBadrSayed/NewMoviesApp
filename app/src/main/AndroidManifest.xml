@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".Application"
+        android:name=".application.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,17 +23,17 @@
         </activity>
 
         <activity
-            android:name=".Screens.MoviesPosters.MoviesActivity"
+            android:name=".screens.movies_posters.MoviesActivity"
             android:label="Movies" />
 
         <activity
-            android:name=".Screens.MovieDetails.DetailsActivity"
+            android:name=".screens.movie_details.DetailsActivity"
             android:label="@string/title_activity_details"
-            android:parentActivityName=".Screens.MoviesPosters.MoviesActivity"
+            android:parentActivityName=".screens.movies_posters.MoviesActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.projects.brightcreations.moviesappmvp.Screens.MoviesPosters.MoviesActivity" />
+                android:value="com.projects.brightcreations.moviesappmvp.screens.movies_posters.MoviesActivity" />
         </activity>
 
     </application>

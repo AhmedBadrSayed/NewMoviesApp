@@ -3,34 +3,36 @@ package com.projects.brightcreations.moviesappmvp;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-import com.projects.brightcreations.moviesappmvp.Models.RealmMovie;
-import com.projects.brightcreations.moviesappmvp.Screens.MoviesPosters.MoviesActivity;
-import com.projects.brightcreations.moviesappmvp.Utilities.SharedPreferenceHelper;
+import com.projects.brightcreations.moviesappmvp.models.MovieRealmObject;
+import com.projects.brightcreations.moviesappmvp.screens.movies_posters.MoviesActivity;
+import com.projects.brightcreations.moviesappmvp.interfaces.ActivityController;
+import com.projects.brightcreations.moviesappmvp.utils.SharedPreferenceHelper;
 
 import io.realm.Realm;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActivityController {
 
     private Realm realm;
-    private SharedPreferenceHelper sharedPreferenceHelper;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void init() {
         startActivity(new Intent(this, MoviesActivity.class));
-        sharedPreferenceHelper = new SharedPreferenceHelper(this);
-        sharedPreferenceHelper.putPref(SharedPreferenceHelper.TOP_CURRENT_PAGE,1);
-        sharedPreferenceHelper.putPref(SharedPreferenceHelper.POPULAR_CURRENT_PAGE,1);
+        SharedPreferenceHelper.init(this);
+        SharedPreferenceHelper.getInstance().putPref(SharedPreferenceHelper.TOP_CURRENT_PAGE,1);
+        SharedPreferenceHelper.getInstance().putPref(SharedPreferenceHelper.POPULAR_CURRENT_PAGE,1);
         realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        realm.where(RealmMovie.class).findAll().deleteAllFromRealm();
+        realm.where(MovieRealmObject.class).findAll().deleteAllFromRealm();
         realm.commitTransaction();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             finishAffinity();
         }
+    }
+
+    @Override
+    public int getLayoutID() {
+        return R.layout.activity_main;
     }
 
     @Override
