@@ -4,7 +4,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 /**
- * Created by Abubaker on 08/12/2016.
+ * Created by ahmed badr on 08/12/2016.
  */
 
 public class Application extends android.app.Application {

@@ -3,14 +3,14 @@ package com.projects.brightcreations.moviesappmvp.screens.movies_posters;
 import android.content.Context;
 import android.util.Log;
 
-import com.projects.brightcreations.moviesappmvp.models.Movie;
-import com.projects.brightcreations.moviesappmvp.models.MoviesResponse;
-import com.projects.brightcreations.moviesappmvp.models.MovieRealmObject;
-import com.projects.brightcreations.moviesappmvp.models.Result;
+import com.projects.brightcreations.moviesappmvp.movie.Movie;
+import com.projects.brightcreations.moviesappmvp.movie.MovieRealmObject;
+import com.projects.brightcreations.moviesappmvp.movie.Result;
 import com.projects.brightcreations.moviesappmvp.local_db.MoviesDB;
 import com.projects.brightcreations.moviesappmvp.utils.Constants;
 import com.projects.brightcreations.moviesappmvp.utils.SharedPreferenceHelper;
 import com.projects.brightcreations.moviesappmvp.web_service.ApiInterfaces;
+import com.projects.brightcreations.moviesappmvp.web_service.PaginatedResponse;
 import com.projects.brightcreations.moviesappmvp.web_service.RestClient;
 
 import java.util.ArrayList;
@@ -31,19 +31,19 @@ import io.realm.Realm;
 
 public class MoviesPresenter {
 
+    private static final String TAG = MoviesPresenter.class.getSimpleName();
     private onGetMoviesListener moviesListener;
     private Realm realm;
     private MoviesDB moviesDB;
     private RestClient restClient;
     private Disposable disposable;
     private List<MovieRealmObject> movieRealmObjectList;
-    private List<Result> resultList;
+    private Result[] resultList;
 
     MoviesPresenter(Context context, onGetMoviesListener moviesListener) {
         SharedPreferenceHelper.init(context);
         this.moviesListener = moviesListener;
         realm = Realm.getDefaultInstance();
-        resultList = new ArrayList<>();
         restClient = new RestClient();
         moviesDB = new MoviesDB(context);
         movieRealmObjectList = new ArrayList<>();
@@ -53,7 +53,8 @@ public class MoviesPresenter {
                            final MoviesActivityViews moviesActivityViews){
         moviesActivityViews.isLoading(true);
         ApiInterfaces apiInterfaces = restClient.createService(ApiInterfaces.class);
-        Observable<MoviesResponse> call = apiInterfaces.getMovies(SortType,Constants.API_KEY,page);
+        Observable<PaginatedResponse<Result>> call =
+                apiInterfaces.getMovies(SortType,Constants.API_KEY,page);
         call.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
                     moviesActivityViews.isLoading(false);
@@ -63,16 +64,17 @@ public class MoviesPresenter {
                     } else SharedPreferenceHelper.getInstance().
                             putPref(SharedPreferenceHelper.TOP_CURRENT_PAGE, page);
                     if (response != null) {
+                        resultList = new Result[response.getResults().length];
                         resultList = response.getResults();
-                        for (int i = 0; i < resultList.size(); i++) {
-                            MovieRealmObject movieRealmObject = new MovieRealmObject(resultList.get(i).getId(),
-                                    resultList.get(i).getVoteAverage(),
-                                    resultList.get(i).getTitle(),
-                                    resultList.get(i).getPosterPath(),
-                                    resultList.get(i).getBackdropPath(),
-                                    resultList.get(i).getTitle(),
-                                    resultList.get(i).getOverview(),
-                                    resultList.get(i).getReleaseDate(),
+                        for (Result result : resultList) {
+                            MovieRealmObject movieRealmObject = new MovieRealmObject(result.getId(),
+                                    result.getVoteAverage(),
+                                    result.getTitle(),
+                                    result.getPosterPath(),
+                                    result.getBackdropPath(),
+                                    result.getTitle(),
+                                    result.getOverview(),
+                                    result.getReleaseDate(),
                                     SortType);
                             movieRealmObjectList.add(movieRealmObject);
                         }

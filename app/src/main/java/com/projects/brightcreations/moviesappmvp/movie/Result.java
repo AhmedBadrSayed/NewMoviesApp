@@ -1,5 +1,5 @@
 
-package com.projects.brightcreations.moviesappmvp.models;
+package com.projects.brightcreations.moviesappmvp.movie;
 
 import java.io.Serializable;
 import java.util.ArrayList;

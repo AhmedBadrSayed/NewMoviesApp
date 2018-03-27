@@ -25,8 +25,8 @@ import android.widget.Toast;
 
 
 import com.projects.brightcreations.moviesappmvp.adapters.PostersRecyclerViewAdapter;
-import com.projects.brightcreations.moviesappmvp.models.Movie;
-import com.projects.brightcreations.moviesappmvp.models.MovieRealmObject;
+import com.projects.brightcreations.moviesappmvp.movie.Movie;
+import com.projects.brightcreations.moviesappmvp.movie.MovieRealmObject;
 import com.projects.brightcreations.moviesappmvp.R;
 import com.projects.brightcreations.moviesappmvp.screens.movie_details.DetailsActivity;
 import com.projects.brightcreations.moviesappmvp.utils.Constants;

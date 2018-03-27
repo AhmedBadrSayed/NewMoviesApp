@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.projects.brightcreations.moviesappmvp.models.Movie;
+import com.projects.brightcreations.moviesappmvp.movie.Movie;
 import com.projects.brightcreations.moviesappmvp.R;
 import com.squareup.picasso.Picasso;
 

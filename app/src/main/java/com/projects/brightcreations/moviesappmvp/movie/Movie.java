@@ -1,4 +1,4 @@
-package com.projects.brightcreations.moviesappmvp.models;
+package com.projects.brightcreations.moviesappmvp.movie;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -2,7 +2,7 @@ package com.projects.brightcreations.moviesappmvp.screens.movie_details;
 
 import android.content.Context;
 
-import com.projects.brightcreations.moviesappmvp.models.Movie;
+import com.projects.brightcreations.moviesappmvp.movie.Movie;
 import com.projects.brightcreations.moviesappmvp.local_db.MoviesDB;
 
 

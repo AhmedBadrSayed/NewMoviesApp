@@ -10,11 +10,9 @@ import java.util.ArrayList;
 
 public class MoviesDB {
 
-    private Context context;
     private SQLiteDatabase db;
 
     public MoviesDB(Context context){
-        this.context = context;
         MoviesDbHelper helper = new MoviesDbHelper(context);
         db = helper.getWritableDatabase();
     }

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 
-import com.projects.brightcreations.moviesappmvp.models.MovieRealmObject;
+import com.projects.brightcreations.moviesappmvp.movie.MovieRealmObject;
 import com.projects.brightcreations.moviesappmvp.screens.movies_posters.MoviesActivity;
 import com.projects.brightcreations.moviesappmvp.interfaces.ActivityController;
 import com.projects.brightcreations.moviesappmvp.utils.SharedPreferenceHelper;

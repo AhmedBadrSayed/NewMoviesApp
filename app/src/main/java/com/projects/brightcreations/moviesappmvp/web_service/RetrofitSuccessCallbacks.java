@@ -1,23 +1,36 @@
 package com.projects.brightcreations.moviesappmvp.web_service;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import android.util.Log;
+
+import com.projects.brightcreations.moviesappmvp.movie.MoviesResponse;
+import com.projects.brightcreations.moviesappmvp.movie.Result;
+
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 
 /**
  * @author ahmed on 26/03/18.
  */
 
-public class RetrofitCallbacks<S> implements Callback<BaseResponse<S>> {
+public class RetrofitSuccessCallbacks implements Consumer<MoviesResponse>{
+
+    private static final String TAG = RetrofitSuccessCallbacks.class.getSimpleName();
+    private MoviesResponseSuccessListener listener;
 
 
     @Override
-    public void onResponse(Call<BaseResponse<S>> call, Response<BaseResponse<S>> response) {
-
+    public void accept(@NonNull MoviesResponse moviesResponse) throws Exception {
+        if (moviesResponse!=null){
+            listener.onGetMoviesResponseSuccess(moviesResponse);
+            Log.e(TAG, "Success  "+moviesResponse.getPage());
+        }
     }
 
-    @Override
-    public void onFailure(Call<BaseResponse<S>> call, Throwable t) {
+    public void setMoviesResponseSuccessListener(MoviesResponseSuccessListener listener){
+        this.listener = listener;
+    }
 
+    public interface MoviesResponseSuccessListener{
+        void onGetMoviesResponseSuccess(MoviesResponse response);
     }
 }

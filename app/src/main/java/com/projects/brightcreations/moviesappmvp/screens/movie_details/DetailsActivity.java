@@ -16,7 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.projects.brightcreations.moviesappmvp.models.Movie;
+import com.projects.brightcreations.moviesappmvp.movie.Movie;
 import com.projects.brightcreations.moviesappmvp.R;
 import com.projects.brightcreations.moviesappmvp.interfaces.ActivityController;
 import com.squareup.picasso.Picasso;
