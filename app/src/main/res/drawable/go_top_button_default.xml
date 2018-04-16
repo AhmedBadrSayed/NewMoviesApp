@@ -4,6 +4,6 @@
 
     <corners
         android:radius="48dp"/>
-    <solid android:color="@color/Portfolio_orange"/>
+    <solid android:color="@color/Portfolio_opacity_orange"/>
 
 </shape>

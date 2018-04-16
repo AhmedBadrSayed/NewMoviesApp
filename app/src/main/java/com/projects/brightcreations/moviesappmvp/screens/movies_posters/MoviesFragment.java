@@ -144,7 +144,6 @@ public class MoviesFragment extends Fragment implements OnMenuItemClickListener,
                             }
                         }
                     }else if (dy<0){
-                        Log.e("last visible : ",lastVisiblesItems+" ");
                         if (lastVisiblesItems<=5) {
                             showGoTop(false);
                         }else showGoTop(true);

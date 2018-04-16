@@ -15,6 +15,7 @@ import com.projects.brightcreations.moviesappmvp.web_service.RestClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -79,7 +80,7 @@ public class MoviesPresenter {
                             movieRealmObjectList.add(movieRealmObject);
                         }
                         addMoviesToRealm(movieRealmObjectList);
-                        Log.e("Size:  ", movieRealmObjectList.size() + "");
+                        Log.e(TAG, "Current Thread "+Thread.currentThread().getName());
                     } else {
                         moviesActivityViews.isLoading(false);
                         moviesListener.onGetMoviesFailure("Error");
